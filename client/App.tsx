@@ -7,6 +7,9 @@ import { useEffect, useState } from "react";
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [showErrorMsg, setShowErrorMsg] = useState(false);
+  const [data, setData] = useState("");
+
   const [loaded, error] = useFonts({
     "Sen-Regular": require("./assets/fonts/Sen-Regular.ttf"),
     "Sen-Bold": require("./assets/fonts/Sen-Bold.ttf"),
@@ -19,27 +22,22 @@ export default function App() {
     if (loaded) {
       SplashScreen.hideAsync();
     }
-  }, [loaded, error]);
+  }, [loaded]);
 
-  if (!loaded && !error) {
+  if (!loaded) {
     return null;
   }
-
-  const [data, setData] = useState("");
-  const [showErrorMsg, setShowErrorMsg] = useState(false);
 
   const handleSubmit = () => {
     if (!data) {
       setShowErrorMsg(true);
-      setTimeout(() => {
-        setShowErrorMsg(false);
-      }, 600);
+      setTimeout(() => setShowErrorMsg(false), 2000);
       return;
     }
-    // try {
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
+    console.log(data);
+
+    // Logic when form submission succeeds
   };
 
   return (
@@ -62,17 +60,24 @@ export default function App() {
         <TextInput
           style={{ fontFamily: "Sen-Regular" }}
           onChangeText={(text) => setData(text)}
-          className="bg-bone_white mt-1.5 p-4 rounded-md"
+          className="bg-bone_white mt-1.5 p-4 rounded-md mb-3"
           value={data}
           placeholder="Ex: Onion, Beef..."
         />
 
-        <Text className="text-red-600">This field is required.</Text>
+        {showErrorMsg && (
+          <Text
+            className="text-red-600 mb-3"
+            style={{ fontFamily: "Sen-Medium" }}
+          >
+            This field is required.
+          </Text>
+        )}
 
         <TouchableOpacity onPress={handleSubmit}>
           <Text
             style={{ fontFamily: "Sen-Bold" }}
-            className="bg-secondary p-3 rounded-md mt-5 text-center text-lg text-bone_white"
+            className="bg-secondary p-3 rounded-md mt-3 text-center text-lg text-bone_white"
           >
             Add new
           </Text>
