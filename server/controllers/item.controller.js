@@ -36,3 +36,27 @@ export const Read = async (req, res) => {
     });
   }
 };
+
+export const Success = async (req, res) => {
+  const { id } = req?.params;
+
+  try {
+    const filter = { _id: id };
+    const update = { status: true };
+
+    const updatedItem = await Item.findOneAndUpdate(filter, update);
+    if (updatedItem) {
+      res.status(200).json({
+        message: "Item marked as completed",
+        status: 200,
+        error: false,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: error | "Error marking item as success",
+      error: true,
+      status: 500,
+    });
+  }
+};
