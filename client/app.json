@@ -19,11 +19,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mushkir96.kadaikkupo"
     },
     "web": {
       "favicon": "./assets/logo.jpg"
     },
-    "plugins": ["expo-font"]
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3b59723b-bdfd-4a50-907f-66bf38c0756e"
+      }
+    }
   }
 }
