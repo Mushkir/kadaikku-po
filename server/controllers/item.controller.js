@@ -28,6 +28,8 @@ export const Read = async (req, res) => {
       error: false,
       data: allListItems,
     });
+
+    res.set("Content-Type", "application/json");
   } catch (error) {
     res.status(500).json({
       message: error | "Error reading item",
