@@ -13,14 +13,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const getAllLists = async () => {
     try {
-      const response = await fetch(API_URI + "/get-all-lists", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://kadaikku-po.vercel.app/get-all-lists",
+        { method: "GET" }
+      );
 
-      const respData = await response.json();
+      const textData = await response.text();
+      console.log("API Response Text:", textData);
+
+      const respData = JSON.parse(textData);
       setListItems(respData?.data || []);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching or parsing data:", error);
     }
   };
 
