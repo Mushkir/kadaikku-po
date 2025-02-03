@@ -36,8 +36,6 @@ export default function App() {
     }
 
     console.log(data);
-
-    // Logic when form submission succeeds
   };
 
   return (
