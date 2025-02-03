@@ -2,6 +2,7 @@ import express from "express";
 import {
   Create,
   Delete,
+  DeleteAll,
   Read,
   Success,
 } from "../controllers/item.controller.js";
@@ -15,5 +16,7 @@ itemsRouter.get("/get-all-lists", Read);
 itemsRouter.put("/task-success/:id", Success);
 
 itemsRouter.delete("/delete-list-item/:id", Delete);
+
+itemsRouter.delete("/delete-all", DeleteAll);
 
 export default itemsRouter;

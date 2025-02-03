@@ -78,3 +78,20 @@ export const Delete = async (req, res) => {
     });
   }
 };
+
+export const DeleteAll = async (req, res) => {
+  try {
+    await Item.deleteMany();
+    res.status(200).json({
+      message: "All items deleted",
+      status: 200,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error | "Error deleting all items",
+      error: true,
+      status: 500,
+    });
+  }
+};

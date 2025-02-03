@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   Alert,
   Image,
@@ -30,11 +30,13 @@ const TheListViewer = () => {
         getAllList();
         Toast.success(respData?.message);
       }
-      console.log(respData);
+      // console.log(respData);
     } catch (error) {
       console.log(error);
     }
   };
+
+  // Delete one record
   const handleDelete = async (id: string) => {
     try {
       const responseApi = await fetch(API_URI + `/delete-list-item/${id}`, {
@@ -51,14 +53,47 @@ const TheListViewer = () => {
     }
   };
 
+  // Delete all records
+  const handleMultipleDelete = async () => {
+    try {
+      const response = await fetch(API_URI + `/delete-all`, {
+        method: "DELETE",
+      });
+
+      const respData = await response.json();
+      if (respData?.status === 200 && !respData?.error) {
+        Toast.success(respData?.message);
+        getAllList();
+        return;
+      }
+
+      console.log(respData);
+    } catch (error) {
+      Toast.error("Technical error. Please try again later!");
+      console.log(error);
+    }
+  };
+
   return (
     <View className=" mt-5 rounded-md">
-      <Text
-        style={{ fontFamily: "Sen-Bold" }}
-        className=" text-2xl text-center mt-10 text-bone_white mb-5"
+      <View
+        className={`${
+          listItems.length > 0 ? " justify-between" : " justify-center"
+        } flex flex-row items-center mt-10 mb-5`}
       >
-        List of Items
-      </Text>
+        <Text
+          style={{ fontFamily: "Sen-Bold" }}
+          className=" text-2xl text-bone_white"
+        >
+          List of Items
+        </Text>
+
+        {listItems.length > 0 && (
+          <TouchableOpacity onPress={handleMultipleDelete}>
+            <FontAwesome5 name="trash" size={24} color="#EFE9D5" />
+          </TouchableOpacity>
+        )}
+      </View>
 
       {listItems.length > 0 ? (
         <ScrollView className="bg-sub_primary p-5 rounded-md h-[37rem] overflow-y-scroll">
@@ -74,13 +109,18 @@ const TheListViewer = () => {
                   <View className=" flex flex-row items-center gap-5">
                     <Text
                       style={{ fontFamily: "Sen-Medium" }}
-                      className="text-lg"
+                      className={`${
+                        item?.status ? "text-bone_white" : "text-gray-800"
+                      } text-xl`}
                     >
                       #{no++}
                     </Text>
+
                     <Text
                       style={{ fontFamily: "Sen-Regular" }}
-                      className="text-lg"
+                      className={`${
+                        item?.status ? "text-bone_white" : "text-gray-800"
+                      } text-xl`}
                     >
                       {item?.name}
                     </Text>
@@ -96,7 +136,11 @@ const TheListViewer = () => {
                     )}
                     {/* <Entypo name="edit" size={24} color="black" /> */}
                     <TouchableOpacity onPress={() => handleDelete(item?._id)}>
-                      <FontAwesome5 name="trash" size={24} color="black" />
+                      <FontAwesome5
+                        name="trash"
+                        size={24}
+                        color={`${item?.status ? "white" : "black"}`}
+                      />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -115,9 +159,9 @@ const TheListViewer = () => {
 
           <Text
             style={{ fontFamily: "Sen-Medium" }}
-            className=" text-slate-200 text-xl"
+            className="text-secondary text-xl"
           >
-            Currently no items added.
+            No items have been added yet.
           </Text>
         </View>
       )}
