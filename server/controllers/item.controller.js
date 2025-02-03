@@ -23,11 +23,13 @@ export const Create = async (req, res) => {
 export const Read = async (req, res) => {
   try {
     const allListItems = await Item.find();
-    res.status(200).json({
-      status: 200,
-      error: false,
-      data: allListItems,
-    });
+    // res.status(200).json({
+    //   status: 200,
+    //   error: false,
+    //   data: allListItems,
+    // });
+
+    res.send({ message: allListItems });
   } catch (error) {
     res.status(500).json({
       message: error | "Error reading item",
