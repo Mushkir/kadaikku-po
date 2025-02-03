@@ -6,11 +6,11 @@ import ToastManager, { Toast } from "toastify-react-native";
 import { useContext, useEffect, useState } from "react";
 import TheListViewer from "./app/components/TheListViewer";
 import { AppContext } from "./app/context/AppContext";
-import { API_URI } from "./API_URI";
 
 SplashScreen.preventAutoHideAsync();
-
 export default function App() {
+  const API_URL = process.env.API_URI || "http://localhost:8080";
+
   const [showErrorMsg, setShowErrorMsg] = useState(false);
   const [data, setData] = useState("");
 
@@ -42,7 +42,7 @@ export default function App() {
     }
 
     try {
-      const response = await fetch(API_URI + "/", {
+      const response = await fetch(API_URL + "/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
