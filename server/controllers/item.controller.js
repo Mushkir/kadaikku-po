@@ -60,3 +60,21 @@ export const Success = async (req, res) => {
     });
   }
 };
+
+export const Delete = async (req, res) => {
+  const { id } = req?.params;
+  try {
+    await Item.deleteOne({ _id: id });
+    res.status(200).json({
+      message: "Item deleted",
+      status: 200,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error | "Error deleting item",
+      error: true,
+      status: 500,
+    });
+  }
+};

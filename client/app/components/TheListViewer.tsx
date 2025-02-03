@@ -35,6 +35,21 @@ const TheListViewer = () => {
       console.log(error);
     }
   };
+  const handleDelete = async (id: string) => {
+    try {
+      const responseApi = await fetch(API_URI + `/delete-list-item/${id}`, {
+        method: "DELETE",
+      });
+
+      const respData = await responseApi.json();
+      if (respData?.status === 200 && !respData?.error) {
+        Toast.success(respData?.message);
+        getAllList();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View className=" mt-5 rounded-md">
@@ -80,7 +95,9 @@ const TheListViewer = () => {
                       </TouchableOpacity>
                     )}
                     {/* <Entypo name="edit" size={24} color="black" /> */}
-                    <FontAwesome5 name="trash" size={24} color="black" />
+                    <TouchableOpacity onPress={() => handleDelete(item?._id)}>
+                      <FontAwesome5 name="trash" size={24} color="black" />
+                    </TouchableOpacity>
                   </View>
                 </View>
               );
