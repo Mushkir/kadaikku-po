@@ -9,6 +9,10 @@ import {
 
 const itemsRouter = express.Router();
 
+itemsRouter.get("/", (req, res) => {
+  res.json({ message: "Hello World!" });
+});
+
 itemsRouter.post("/", Create);
 
 itemsRouter.get("/get-all-lists", Read);
