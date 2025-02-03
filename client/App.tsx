@@ -42,7 +42,7 @@ export default function App() {
     }
 
     try {
-      const response = await fetch(API_URL + "/", {
+      const response = await fetch("https://kadaikku-po.vercel.app/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,15 +11,14 @@ const PORT = 8080;
 
 const corsOptions = {
   credentials: true,
-  origin: "*",
-  // origin: [
-  //   process.env.CORS_ALLOWED_ORIGIN,
-  //   "http://localhost:8081", // For local dev
-  //   "http://192.168.1.7:8080", // Local network access (optional)
-  // ],
+  origin: [
+    process.env.CORS_ALLOWED_ORIGIN,
+    "http://localhost:8081", // For local dev
+    "http://192.168.1.7:8080", // Local network access (optional)
+  ],
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // Apply CORS settings
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
