@@ -1,7 +1,7 @@
 {
   "name": "kadaikku-po",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.tsx",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -9,7 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/vector-icons": "^14.0.4",
     "expo": "~52.0.28",
+    "expo-font": "~13.0.3",
+    "expo-splash-screen": "~0.29.21",
     "expo-status-bar": "~2.0.1",
     "nativewind": "^4.1.23",
     "react": "18.3.1",
@@ -17,8 +20,8 @@
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",
     "tailwindcss": "^3.4.17",
-    "expo-font": "~13.0.3",
-    "expo-splash-screen": "~0.29.21"
+    "toastify-react-native": "^5.0.4",
+    "expo-image": "~2.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

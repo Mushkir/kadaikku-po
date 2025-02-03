@@ -1,9 +1,12 @@
 import express from "express";
+import bodyParser from "body-parser";
 import itemsRouter from "./routes/index.routes.js";
 import connectDB from "./config/db.js";
 
 const app = express();
 const PORT = 8080;
+
+app.use(express.json());
 
 app.use("/api/v1", itemsRouter);
 

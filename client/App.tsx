@@ -2,13 +2,18 @@ import { StatusBar } from "expo-status-bar";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
+import ToastManager, { Toast } from "toastify-react-native";
+import { useContext, useEffect, useState } from "react";
+import TheListViewer from "./app/components/TheListViewer";
+import { AppContext } from "./app/context/AppContext";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [showErrorMsg, setShowErrorMsg] = useState(false);
   const [data, setData] = useState("");
+
+  const { getAllList, listItems } = useContext(AppContext);
 
   const [loaded, error] = useFonts({
     "Sen-Regular": require("./assets/fonts/Sen-Regular.ttf"),
@@ -28,18 +33,44 @@ export default function App() {
     return null;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!data) {
       setShowErrorMsg(true);
       setTimeout(() => setShowErrorMsg(false), 2000);
       return;
     }
 
-    console.log(data);
+    try {
+      const response = await fetch("http://192.168.1.7:8080/api/v1/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ item: data }),
+      });
+
+      const respData = await response.json();
+      if (respData?.status === 201 && !respData?.error) {
+        Toast.success(respData?.message);
+        setData("");
+        getAllList();
+        return;
+      }
+
+      if (respData?.error) {
+        Toast.error(respData?.message);
+        return;
+      }
+
+      console.log(respData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <View className="w-full h-full bg-primary p-5">
+      <ToastManager textStyle={{ fontSize: 14, fontFamily: "Sen-Regular" }} />
       <Text
         className="mt-20 text-bone_white text-4xl text-center"
         style={{ fontFamily: "Sen-Bold" }}
@@ -81,6 +112,8 @@ export default function App() {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <TheListViewer />
 
       <StatusBar style="auto" />
     </View>

@@ -6,6 +6,11 @@ const itemSchema = new Schema(
       type: String,
       required: true,
     },
+
+    status: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

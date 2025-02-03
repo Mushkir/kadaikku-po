@@ -1,8 +1,10 @@
 import express from "express";
-import { Create } from "../controllers/item.controller.js";
+import { Create, Read } from "../controllers/item.controller.js";
 
 const itemsRouter = express.Router();
 
-itemsRouter.get("/", Create);
+itemsRouter.post("/", Create);
+
+itemsRouter.get("/get-all-lists", Read);
 
 export default itemsRouter;
