@@ -8,7 +8,7 @@ const PORT = 8080;
 
 app.use(express.json());
 
-app.use("/api/v1", itemsRouter);
+app.use("/", itemsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);

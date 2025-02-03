@@ -10,7 +10,7 @@ import {
 const itemsRouter = express.Router();
 
 itemsRouter.get("/", (req, res) => {
-  res.json({ message: "Hello World!" });
+  res.send({ message: "Hello World!" });
 });
 
 itemsRouter.post("/", Create);
