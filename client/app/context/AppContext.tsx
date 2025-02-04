@@ -15,8 +15,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     try {
       // const response = await fetch(API_URI + "/get-all-lists", {
       const response = await fetch(
-        "https://server-jj4ydbs3b-mushkirs-projects.vercel.app" +
-          "/get-all-lists",
+        "https://kadaikku-po.vercel.app/get-all-lists",
         {
           credentials: "include",
           method: "GET",
