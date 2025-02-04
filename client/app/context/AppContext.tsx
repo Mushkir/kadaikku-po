@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { API_URI } from "../../API_URI";
 
 interface AppContextType {
   listItems: any[];
@@ -12,13 +13,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const getAllLists = async () => {
     try {
-      const response = await fetch(``, {
+      const response = await fetch(`${API_URI}/get-all-lists`, {
         credentials: "include",
         method: "GET",
       });
 
       const respData = await response.json();
-      console.log(respData);
+      // console.log(respData);
 
       setListItems(respData?.data || []);
     } catch (error) {
