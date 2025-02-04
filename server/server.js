@@ -15,10 +15,10 @@ const corsOptions = {
     "http://localhost:8081", // For local dev
     "http://192.168.1.7:8080", // Local network access (optional)
   ],
-  method: ["POST", "GET", "PUT", "DELETE"],
+  methods: ["POST", "GET", "PUT", "DELETE"],
 };
 
-app.use(cors()); // Apply CORS settings
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
