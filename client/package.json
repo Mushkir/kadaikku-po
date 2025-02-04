@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",
-    "expo": "~52.0.28",
+    "expo": "^52.0.30",
     "expo-font": "~13.0.3",
     "expo-image": "~2.0.4",
     "expo-splash-screen": "~0.29.21",
