@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import itemsRouter from "./routes/index.routes.js";
-import connectDB from "./config/db.js";
+import itemsRouter from "./api/routes/index.routes.js";
+import connectDB from "./api/config/db.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
@@ -24,7 +24,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/", itemsRouter);
+app.use("/api/api", itemsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);
