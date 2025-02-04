@@ -29,5 +29,4 @@ app.use("/api/api", itemsRouter);
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);
   connectDB();
-  console.log(process.env.CORS_ALLOWED_ORIGIN);
 });
