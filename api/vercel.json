@@ -12,5 +12,10 @@
       "dest": "server.js"
     }
   ],
-  "regions": ["bom1"]
+  "regions": ["bom1"],
+  "functions": {
+    "/api/server.js": {
+      "maxDuration": 10
+    }
+  }
 }
