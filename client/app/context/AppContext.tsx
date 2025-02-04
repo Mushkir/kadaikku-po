@@ -13,10 +13,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const getAllLists = async () => {
     try {
-      const response = await fetch(API_URI + "/get-all-lists", {
-        credentials: "include",
-        method: "GET",
-      });
+      // const response = await fetch(API_URI + "/get-all-lists", {
+      const response = await fetch(
+        "https://server-jj4ydbs3b-mushkirs-projects.vercel.app" +
+          "/get-all-lists",
+        {
+          credentials: "include",
+          method: "GET",
+        }
+      );
 
       const respData = await response.json();
       console.log(respData);

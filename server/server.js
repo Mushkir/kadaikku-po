@@ -13,6 +13,7 @@ const corsOptions = {
   credentials: true,
   origin: [
     process.env.CORS_ALLOWED_ORIGIN,
+    "https://server-jj4ydbs3b-mushkirs-projects.vercel.app",
     "http://localhost:8081", // For local dev
     "http://192.168.1.7:8081", // Local network access (optional)
   ],
