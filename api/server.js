@@ -24,7 +24,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/api/api", itemsRouter);
+app.use("/api", itemsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);
