@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import itemsRouter from "./api/routes/index.routes.js";
-import connectDB from "./api/config/db.js";
+import itemsRouter from "./routes/index.routes.js";
+import connectDB from "./config/db.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
