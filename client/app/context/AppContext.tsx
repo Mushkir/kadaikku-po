@@ -13,18 +13,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const getAllLists = async () => {
     try {
+      // const response = await fetch(
+      //   API_URI + "/get-all-lists",
+      //   {
+      //     credentials: "include",
+      //     method: "GET",
+      //   }
       const response = await fetch(
-        API_URI + "/get-all-lists",
+        "https://kadaikku-po.vercel.app/get-all-lists",
         {
           credentials: "include",
           method: "GET",
         }
-        // const response = await fetch(
-        //   "https://kadaikku-po.vercel.app/api/get-all-lists",
-        //   {
-        //     credentials: "include",
-        //     method: "GET",
-        //   }
       );
 
       const respData = await response.json();
